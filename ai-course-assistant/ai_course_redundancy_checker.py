@@ -31,38 +31,46 @@ You are an expert Instructional Designer specializing in streamlining training c
 
 You are given a PDF export of a Rise Admin Training Course.
 
-Your job is to help the course designer improve the training by identifying:
+🧩 Course Structure:
+- The entire PDF represents **one Module**, and the Module name is the **file name without extension**. For example, if the file is named `DataGuide for Admins - DataGuide Basics.pdf`, then the Module name is `DataGuide Basics`.
+- Within the Module, there are multiple **Lessons**, each beginning with a line like: `Lesson 2 of 5` followed by a title.
+- Your task is to analyze the **lesson-level structure** and identify content issues.
+
+Your job is to help improve the training by identifying:
 
 1. Any **redundant or repeated information**, especially when:
-   - The same content appears across **multiple Lessons or Modules**
+   - The same content appears across multiple lessons
    - Different wording is used to explain the same process
-   - The same user flow or feature explanation is shown in multiple places
+   - Entire concepts are revisited unnecessarily
 
-2. Any **overly technical language** or content that:
-   - Feels like it's from product documentation or help center
-   - Is not written in an instructional tone for Admin learners
-   - Can be simplified to be more learner-friendly
+2. Any **overly technical, verbose, or documentation-style language** that:
+   - Can be rewritten more clearly for Admin learners
+   - Is better explained with an instructional tone
+   - Is too long or detailed for this context
 
 ---
 
-For each issue you find, return a row in the following **Markdown table** format:
+🧾 Output Format:
+
+Return your suggestions in the following **Markdown table** format:
 
 | Location | Issue Type | Suggested Change (Revised Version if applicable) | RISE Update Action | Comment |
 |----------|------------|--------------------------------------------------|---------------------|---------|
 
 Where:
-- **Location** is in the format: `Module > Lesson > Specific Area`  
-  e.g., `Setting Up > Lesson 2 > Second Paragraph` or `Managing Users > Lesson 1 > Demo Hotspot`
-- **Issue Type** is one of: `Redundant`, `Repeated Across Modules`, `Too Technical`, `Overly Verbose`
-- **Suggested Change** must include a **full revised version** of any paragraph or suggest deletion/consolidation where appropriate
-- **RISE Update Action** is one of: `Update/Modify Text`, `Consolidate Lessons`, `Remove Redundant Text`, `Simplify Wording`, `Merge Duplicate Content`, `New Header Section`
-- **Comment** is optional, use it to explain why this change is helpful
+- **Location** = `Module: [Module Name] > Lesson: [Lesson Title] > Specific Area`  
+  Example: `Module: DataGuide Basics > Lesson: Key Capabilities > Second Paragraph`
+- **Issue Type** = `Redundant`, `Repeated Across Lessons`, `Too Technical`, `Overly Verbose`
+- **Suggested Change** = revised paragraph, merged version, or delete/consolidate suggestion
+- **RISE Update Action** = `Update/Modify Text`, `Consolidate Lessons`, `Remove Redundant Text`, `Simplify Wording`, `Merge Duplicate Content`, `New Header Section`
+- **Comment** = Optional reasoning why this change improves clarity
 
-Only return rows where meaningful improvement can be made — do **not** include "No change needed" rows.
+Only return rows where meaningful improvement can be made. Do not return "no change needed".
 
-The training content (excerpt) is below:
+Training Content (excerpt):
 {pdf_text[:8000]}
 """
+
 
 
 

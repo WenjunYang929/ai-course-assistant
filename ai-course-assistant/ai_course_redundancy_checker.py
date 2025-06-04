@@ -1,7 +1,7 @@
 import streamlit as st
 import fitz  # PyMuPDF
 import pandas as pd
-import os
+import io as iox
 from openai import OpenAI
 
 client = OpenAI(
@@ -88,7 +88,7 @@ The training content (excerpt) is below:
         st.stop()
 
     st.markdown("### 📥 Download Feedback")
-    output = io.BytesIO()
+    output = iox.BytesIO()
     result_df.to_excel(output, index=False, engine='openpyxl')
     output.seek(0)
 

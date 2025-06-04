@@ -1,13 +1,13 @@
 import streamlit as st
 import fitz  # PyMuPDF
 import pandas as pd
-import io
+import os
 from openai import OpenAI
 
-# 初始化 OpenAI
 client = OpenAI(
-    api_key="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"
+  api_key=os.getenv("OPENAI_API_KEY")  # ✅ 用环境变量读取
 )
+
 
 st.set_page_config(page_title="AI PDF Redundancy Reviewer", layout="centered")
 st.title("🧹 PDF Redundancy Reviewer for Admin Training")
